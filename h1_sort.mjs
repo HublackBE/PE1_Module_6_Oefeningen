@@ -8,7 +8,7 @@ for(let n = 0; n < numbersLength; n++) {
     numbersSorted.push(numbers[0]); // Pushes first index
     numbers.splice(0, 1); // Removes first index from numbers array
         for(let i = 0; i < numbers.length; i++) { // Use of dynamic numbers.length as length of array decreases
-            if (numbers[i] < numbersSorted[n]) {    // Switching both numbers if smaller, allows for lesser iterations
+            if (numbers[i] > numbersSorted[n]) {    // Switching both numbers if bigger, allows for lesser iterations
                 let biggerNumber = numbersSorted[n]; // Temporary variable to switch both values
                 numbersSorted.splice(n, 1, numbers[i]); // Replaces number in numbersSorted array
                 numbers.splice(i, 1, biggerNumber); // Replaces number in numbers array
