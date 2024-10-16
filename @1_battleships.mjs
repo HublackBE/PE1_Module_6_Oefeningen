@@ -99,7 +99,7 @@ async function shooting(){
     try {
         shoot(parseFloat(await userInput.question('Geef een x-coördinaat in: ')), parseFloat(await userInput.question('Geef een y-coördinaat in: ')));
     }catch(error){
-        console.error('Ongeldige coördinaten!')
+        console.error('Ongeldige coördinaten!');
         await shooting();
     }
     }
@@ -113,11 +113,11 @@ while(sumBoats !== 10){
     await shooting();
     for(let i = 0; i < 10; i++){
         if(boatsField[i].indexOf('B') === -1){
-            sumBoats += 1
+            sumBoats += 1;
         }
     }
 }
 
-console.log('You win!')
+console.log('You win!');
 
 process.exit();
