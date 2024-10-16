@@ -29,16 +29,23 @@ const boatsField = [
 ];
 
 
+let moves = 0;
+
 function shoot(x, y) {
     if(x <= 0 || x > 10 || y <= 0 || y > 10) {
         throw Error();
+    }else if(playingField[y-1][x-1] == '^' || playingField[y-1][x-1] == '*'){
+        console.error('Je hebt op deze coördinaten al geschoten.');
     }else if(boatsField[y-1][x-1] === 'B'){
         playingField[y-1][x-1] = '*';
         boatsField[y-1][x-1] = '~';
+        moves++;
     }else {
         playingField[y-1][x-1] = '^';
+        moves++;
     }
     console.log(playingField.join('\n').replaceAll(',', ' '));
+    console.log(boatsField.join('\n').replaceAll(',', ' '))
 }
 
 function boat(x, y, length, direction) {
@@ -118,6 +125,6 @@ while(sumBoats !== 10){
     }
 }
 
-console.log('You win!');
+console.log(`You win! Je hebt ${moves} schotten gemaakt.`);
 
 process.exit();
