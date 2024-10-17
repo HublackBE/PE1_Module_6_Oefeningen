@@ -49,7 +49,7 @@ function shoot(x, y) {
 }
 
 function boat(x, y, length, direction) {
-
+    // TODO: prevent overlapping boats
     for(let i = 0; i <= length - 1; i++){
         if(length < 2 || 5 < length) {
             throw Error();
@@ -93,11 +93,13 @@ function boat(x, y, length, direction) {
 
 const choices = ['up', 'down', 'left', 'right']
 
-async function boatPlacement() {
-    try {
-        boat(Math.floor(Math.random() * 9 + 1), Math.floor(Math.random() * 9 + 1), Math.floor(Math.random() * 5 + 1), choices[Math.floor(Math.random() * 4)]);
-    } catch (error) {
-        await boatPlacement();
+async function boatPlacement(boatsAmount) {
+    for(let i = 0; i < boatsAmount; i++){
+        try {
+            boat(Math.floor(Math.random() * 9 + 1), Math.floor(Math.random() * 9 + 1), Math.floor(Math.random() * 5 + 1), choices[Math.floor(Math.random() * 4)]);
+        } catch (error) {
+            await boatPlacement(boatsAmount - i);
+        }
     }
 }
 
@@ -111,7 +113,7 @@ async function shooting(){
     }
     }
 
-await boatPlacement(); // Places 1 boat randomly
+await boatPlacement(parseFloat(await userInput.question('Geef een aantal boten in; '))); // Places x numbers of boats randomly
 console.log(playingField.join('\n').replaceAll(',', ' '));
 
 let sumBoats = 0;
