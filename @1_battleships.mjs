@@ -45,7 +45,6 @@ function shoot(x, y) {
         moves++;
     }
     console.log(playingField.join('\n').replaceAll(',', ' '));
-    console.log(boatsField.join('\n').replaceAll(',', ' '))
 }
 
 function boat(x, y, length, direction) {
