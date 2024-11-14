@@ -50,6 +50,32 @@ function shoot(x, y) {
 
 function boat(x, y, length, direction) {
     // TODO: prevent overlapping boats
+    for(let i = 0; i < length; i++) {
+        switch(direction.toLowerCase()) {
+            case 'up':
+                if (boatsField[y - i][x] == 'B') {
+                    throw Error();
+                }
+                break;
+            case 'down':
+                if (boatsField[y + i][x] == 'B') {
+                    throw Error();
+                }
+                break;
+            case 'left':
+                if (boatsField[y][x - i] == 'B') {
+                    throw Error();
+                }
+                break;
+            case 'right':
+                if(boatsField[y][x + i] == 'B'){
+                    throw Error();
+                }
+                break;
+            default:
+                throw Error();
+        }
+    }
     for(let i = 0; i <= length - 1; i++){
         if(length < 2 || 5 < length) {
             throw Error();
@@ -94,11 +120,15 @@ function boat(x, y, length, direction) {
 const choices = ['up', 'down', 'left', 'right']
 
 async function boatPlacement(boatsAmount) {
+    if (boatsAmount > 20) {
+        console.error('The max amount of boats is 20!');
+        return await boatPlacement(parseFloat(await userInput.question('Geef een aantal boten in; ')));
+    }
     for(let i = 0; i < boatsAmount; i++){
         try {
             boat(Math.floor(Math.random() * 9 + 1), Math.floor(Math.random() * 9 + 1), Math.floor(Math.random() * 5 + 1), choices[Math.floor(Math.random() * 4)]);
         } catch (error) {
-            await boatPlacement(boatsAmount - i);
+            i--;
         }
     }
 }
