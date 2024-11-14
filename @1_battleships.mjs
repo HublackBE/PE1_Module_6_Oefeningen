@@ -48,7 +48,6 @@ function shoot(x, y) {
 }
 
 function boat(x, y, length, direction) {
-    // TODO: prevent overlapping boats
     for(let i = 0; i < length; i++) {
         switch(direction.toLowerCase()) {
             case 'up':
