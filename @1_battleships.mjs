@@ -120,7 +120,7 @@ const choices = ['up', 'down', 'left', 'right']
 async function boatPlacement(boatsAmount) {
     if (boatsAmount > 20) {
         console.error('The max amount of boats is 20!');
-        return await boatPlacement(parseFloat(await userInput.question('Geef een aantal boten in; ')));
+        return await boatPlacement(parseFloat(await userInput.question('Geef een aantal boten in: ')));
     }
     for(let i = 0; i < boatsAmount; i++){
         try {
